@@ -82,6 +82,7 @@ namespace TopOrAFK.Champions
             Config.AddSubMenu(new Menu("Passive", "Passive"));
             Config.SubMenu("Passive").AddItem(new MenuItem("passiveQ", "Auto Stack Passive w/ Q").SetValue(false));
             Config.SubMenu("Passive").AddItem(new MenuItem("passiveW", "Auto Stack Passive w/ W").SetValue(false));
+            Config.SubMenu("Passive").AddItem(new MenuItem("passiveE", "Auto Stack Passive w/ E").SetValue(false));
 
             Config.AddSubMenu(new Menu("Misc", "Misc"));
             Config.SubMenu("Misc").AddItem(new MenuItem("KSq", "Killsteal Q").SetValue(false));
@@ -205,6 +206,11 @@ namespace TopOrAFK.Champions
                     pasWstack();
                 }
 
+                if (Config.Item("passiveE").GetValue<bool>() == true)
+                {
+                    pasEstack();
+                }
+                
                 if (Config.Item("ActiveWave").GetValue<KeyBind>().Active)
                 {
                     WaveClear();
@@ -242,6 +248,14 @@ namespace TopOrAFK.Champions
             if (W.GetDamage(minions[0]) > minions[0].Health + 20 && !HasStun())
             {
                 W.Cast(minions[0]);
+            }
+        }
+
+        private static void pasEstack()
+        {
+            if (!HasStun())
+            {
+                E.Cast();
             }
         }
 
