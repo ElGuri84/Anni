@@ -253,7 +253,7 @@ namespace TopOrAFK.Champions
 
         private static void pasEstack()
         {
-            if (!HasStun() < 4)
+            if (!HasStun())
             {
                 E.Cast();
             }
